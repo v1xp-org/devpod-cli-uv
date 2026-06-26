@@ -1,0 +1,21 @@
+{
+  "name": "Python UV + CLI DevPod",
+  "build": {
+    "dockerfile": ".devcontainer/Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "devpod": {
+      "prebuildRepository": "ghcr.io/v1xp/devpod.cli-uv"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.gnupg,target=/home/vscode/.gnupg,type=bind,consistency=cached"
+  ],
+  "postCreateCommand": "uv sync",
+  "remoteUser": "vscode"
+}
