@@ -90,6 +90,9 @@ COPY --from=uv /uv /uvx /usr/local/bin/
 # Install graphify (knowledge graph for codebases) via uv
 RUN uv tool install graphifyy
 
+# Install graphify skill for opencode (runs as root, graphify is in root's PATH)
+RUN graphify install opencode
+
 # Ensure the vscode/devcontainer user has ownership and fix /root traversal
 USER root
 RUN groupadd -f docker && usermod -aG docker vscode \
@@ -100,6 +103,3 @@ USER vscode
 RUN git config --global user.name "vscode" && git config --global user.email "vscode@devcontainer.local"
 RUN nvim --headless +"set spelllang=en_us,pt_br" +qa 2>/dev/null || true
 ENV PATH="/home/vscode/.local/bin:${PATH}"
-
-# Install graphify skill for opencode
-RUN graphify install opencode
