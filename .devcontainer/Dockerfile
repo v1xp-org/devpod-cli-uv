@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:0.5 AS uv
+FROM ghcr.io/astral-sh/uv:latest AS uv
 
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04 AS nvim-builder
 
